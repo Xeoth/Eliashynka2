@@ -1,0 +1,18 @@
+{
+  "name": "Eliashynka",
+  "version": "2.0",
+  "description": "Druga wersja bota serwer Eliasha.",
+  "main": "main.js",
+  "author": "Xeoth#1842",
+  "dependencies": {
+    "canvas": "^2.4.1",
+    "discord.js": "^11.4.2",
+    "enmap": "^4.6.5",
+    "es6-promise": "^4.2.5",
+    "isomorphic-fetch": "^2.2.1",
+    "querystring": "^0.2.0",
+    "r2": "^2.0.1",
+    "snekfetch": "^4.0.4",
+    "winston": "^3.1.0"
+  }
+}
