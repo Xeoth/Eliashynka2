@@ -26,8 +26,8 @@ module.exports = async (client, message) => {
         const upvoteFilter = reaction => reaction.emoji.name === upvote;
         const downvoteFilter = reaction => reaction.emoji.name === downvote;
 
-        const upvoteCollector = message.createReactionCollector(upvoteFilter, { time: ms("12h") });
-        const downvoteCollector = message.createReactionCollector(downvoteFilter, { time: ms("12h") });
+        const upvoteCollector = message.createReactionCollector(upvoteFilter, { time: ms("5h") });
+        const downvoteCollector = message.createReactionCollector(downvoteFilter, { time: ms("5h") });
 
         downvoteCollector.on('collect', m => {
             if (m.count >= 10) return message.delete(0);
