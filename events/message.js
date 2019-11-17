@@ -26,11 +26,15 @@ module.exports = async (client, message) => {
         const upvoteFilter = reaction => reaction.emoji.name === upvote;
         const downvoteFilter = reaction => reaction.emoji.name === downvote;
 
-        const upvoteCollector = message.createReactionCollector(upvoteFilter, { time: ms("12h") });
-        const downvoteCollector = message.createReactionCollector(downvoteFilter, { time: ms("12h") });
+        const upvoteCollector = message.createReactionCollector(upvoteFilter, { time: ms(client.config.timeToFinishCounting) });
+        const downvoteCollector = message.createReactionCollector(downvoteFilter, { time: ms(client.config.timeToFinishCounting) });
 
         downvoteCollector.on('collect', m => {
-            if (m.count >= 10) return message.delete(0);
+            if (m.count >= client.config.downvotesToDelete) {
+                score.points -= client.config.downvotesToDelete;
+                client.setScore.run(score);
+                return message.delete(0, `Mem uzyskał -${client.config.downvotesToDelete} punktów`);
+            }
         })
 
         await upvoteCollector.on('end', collected => {
@@ -42,6 +46,10 @@ module.exports = async (client, message) => {
             score.points -= collected.size;
             client.setScore.run(score);
             message.clearReactions()
+            if (score.points <= client.config.pointsToBan) {
+                const memeChannel = client.channels.get(client.config.memeChannel);
+                memeChannel.overwritePermissions(message.author, { 'SEND_MESSAGES': false });
+            }
         }) 
     }
 
