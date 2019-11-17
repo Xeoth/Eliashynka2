@@ -20,6 +20,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm i
+        npm i node-gyp better-sqlite3
         npm ci
         npm run build --if-present
         npm test
