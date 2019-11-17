@@ -13,14 +13,17 @@ exports.run = async (client, message, args) => {
     //Sprawdzanie czy wiadomość jest wysyłana na serwerze
     if (message.guild) {
 
+        let userToCheck = message.mentions.users.first();
+        if (!userToCheck) userToCheck = message.author;
+
         //Definiowanie punktów
-        let score = client.getScore.get(message.author.id, message.guild.id);
+        let score = client.getScore.get(userToCheck.id, message.guild.id);
 
         if (!score) {
             //Jeżeli użytkownik nie ma punktów, pokazujemy to
             score = {
-                id: `${message.guild.id}-${message.author.id}`,
-                user: message.author.id,
+                id: `${message.guild.id}-${userToCheck.id}`,
+                user: userToCheck.id,
                 guild: message.guild.id,
                 points: 0
             }
@@ -28,7 +31,7 @@ exports.run = async (client, message, args) => {
         }
 
         const embedSuccess = new Discord.RichEmbed()
-            .addField(`Liczba punktów dla ${message.author.username}:`, score.points)
+            .addField(`Liczba punktów dla ${userToCheck.username}:`, score.points)
             .setColor("00ff00")
         
         embedMessage.edit(embedSuccess)
