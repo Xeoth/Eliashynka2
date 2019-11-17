@@ -7,6 +7,17 @@ exports.run = async (client, message, args) => {
         .setAuthor("Pracuję...", "https://cdn.discordapp.com/attachments/590180303537176578/645011029042003968/loading_eliashynka.gif")
     
     const embedMessage = await message.channel.send(workingEmbed);
+
+    //Sprawdzanie uprawnień
+    const memberToCheck = message.guild.members.get(message.author.id);
+    if (!memberToCheck.permissions.has('ADMINISTRATOR')) {
+        const failInsufficientPermissions = new Discord.RichEmbed()
+            .setAuthor("Błąd!", "https://cdn.discordapp.com/attachments/590180303537176578/645015715967139850/cross.png")
+            .setDescription("Nie masz do tego uprawnień!")
+            .setColor("ff0000")
+        return embedMessage.edit(failInsufficientPermissions);
+    }
+
     let userID = args[0];
     var setPoints = args[1];
     //Sprawdzanie czy są argumenty
