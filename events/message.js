@@ -46,7 +46,7 @@ module.exports = async (client, message) => {
             score.points -= collected.size;
             client.setScore.run(score);
             message.clearReactions()
-            if (score.points <= client.config.pointsToBan) {
+            if (score.points >= client.config.pointsToBan) {
                 const memeChannel = client.channels.get(client.config.memeChannel);
                 memeChannel.overwritePermissions(message.author, { 'SEND_MESSAGES': false });
             }
