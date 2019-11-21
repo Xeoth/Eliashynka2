@@ -14,7 +14,6 @@ module.exports = async (client, message) => {
         const downvoteCollector = await message.createReactionCollector(downvoteFilter, { time: ms(client.config.timeToFinishCounting) });
 
         downvoteCollector.on('collect', r => {
-            console.log(r.count);
             if (r.count == client.config.downvotesToDelete) {
                 return message.delete(0, `Mem uzyskał -${client.config.downvotesToDelete} punktów`);
             }
