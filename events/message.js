@@ -5,8 +5,10 @@ module.exports = async (client, message) => {
     if (message.author.bot) return;
     if (message.channel.id == client.config.memeChannel && message.attachments.size > 0) {
         //Tracking emotes
+        const upvote = '👍';
         const downvote = '👎';
 
+        await message.react(upvote);
         await message.react(downvote);
 
         const downvoteFilter = reaction => reaction.emoji.name === downvote;
