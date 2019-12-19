@@ -28,9 +28,17 @@ module.exports = async (client, message) => {
     }
 
     if (message.content.indexOf(client.config.prefix) !== 0) return;
-    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-    const cmd = client.commands.get(command);
-    if (!cmd) return;
-    cmd.run(client, message, args);
+    try {
+        const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+        const command = args.shift().toLowerCase();
+        const cmd = client.commands.get(command);
+        if (!cmd) return;
+        cmd.run(client, message, args);
+    } catch (err) {
+        message.channel.send(`
+        URBANEK COŚ SPIERNICZYŁ!
+        Weź go ktoś pingnij. <@230027892392722432>.
+        Tu masz co zwaliłeś:
+        ${err}`)
+    }
 };
