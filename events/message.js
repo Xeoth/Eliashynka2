@@ -35,10 +35,11 @@ module.exports = async (client, message) => {
         if (!cmd) return;
         cmd.run(client, message, args);
     } catch (err) {
-        message.channel.send(`
-        URBANEK COŚ SPIERNICZYŁ!
-        Weź go ktoś pingnij. <@230027892392722432>.
-        Tu masz co zwaliłeś:
-        ${err}`)
+        message.channel.send(`<@${client.config.ownerID}> coś spierniczył! Weź go ktoś pingnij. Tu masz co zwaliłeś:` +
+        `
+\`\`\`js
+${err}
+\`\`\`
+        `)
     }
 };
