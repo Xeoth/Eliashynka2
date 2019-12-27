@@ -1,4 +1,6 @@
-exports.run = async (client, message, args) => { // eslint-disable-line no-unused-vars
-  const msg = await message.channel.send("Ping?");
-  msg.edit(`Pong! Opóźnienie to ${msg.createdTimestamp - message.createdTimestamp}ms. Opóźnienie API to ${Math.round(client.ping)}ms`);
+exports.run = async (client, message, args) => {
+  const msg = await message.channel.send('Ping?');
+  const latency = msg.msg.createdTimestamp - message.createdTimestamp;
+  const apiLat = Math.round(client.ping);
+  msg.edit(`Pong! Opóźnienie to ${latency}ms. Opóźnienie API to ${apiLat}ms`);
 };

@@ -1,29 +1,29 @@
-const Discord = require("discord.js");
-const Enmap = require("enmap");
-const fs = require("fs");
+const Discord = require('discord.js');
+const Enmap = require('enmap');
+const fs = require('fs');
 
 const client = new Discord.Client();
-const config = require("./config.json");
-// We also need to make sure we're attaching the config to the CLIENT so it's accessible everywhere!
+const config = require('./config.json');
+// Attach client to config
 client.config = config;
 
-fs.readdir("./events/", (err, files) => {
+fs.readdir('./events/', (err, files) => {
   if (err) return console.error(err);
-  files.forEach(file => {
+  files.forEach((file) => {
     const event = require(`./events/${file}`);
-    let eventName = file.split(".")[0];
+    const eventName = file.split('.')[0];
     client.on(eventName, event.bind(null, client));
   });
 });
 
 client.commands = new Enmap();
 
-fs.readdir("./commands/", (err, files) => {
+fs.readdir('./commands/', (err, files) => {
   if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/${file}`);
-    let commandName = file.split(".")[0];
+  files.forEach((file) => {
+    if (!file.endsWith('.js')) return;
+    const props = require(`./commands/${file}`);
+    const commandName = file.split('.')[0];
     console.log(`Attempting to load command ${commandName}`);
     client.commands.set(commandName, props);
   });
