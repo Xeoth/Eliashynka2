@@ -11,13 +11,14 @@ exports.run = async (client, message, args) => {
   if (!perms.has('ADMINISTRATOR')) return message.reply('<:redCross:643513035402772520> Nie masz do tego uprawnień');
 
   // Separates title, content and color
+  const fullArgs = args.join(' ');
   const separated = fullArgs.split('|');
   const title = separated[0];
   const content = separated[1];
   let color = separated[2];
 
   // Check whether at least 2 arguments have been passed
-  if (!title || !content) return message.reply('<:redCross:643513035402772520> Nie wpisałeś wymaganych argumentów. Poprawna składnia: `!embed <tytuł> | <zawartość> | [kolor]`');
+  if (!title || !content) return message.reply('Nie wpisałeś wymaganych argumentów.\nPoprawna składnia:\n' + '`' + client.config.prefix + 'embed <tytuł> | <zawartość> | [kolor]' + '`');
 
   // Fill color with default value if not present
   if (!color) color = '#xxxxxx';
