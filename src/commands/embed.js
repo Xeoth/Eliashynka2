@@ -1,44 +1,32 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args) => {
-  /** Creates an embed */
-  async function createEmbed() {
-    const creationMessage = await message.channel.send('Wpisz tytuł embeda (masz na to 30 sekund!)');
+/**
+ * Full syntax:
+ * !embed title value | content value | [color]
+ */
 
-    const filter = (m) => m.author.id === message.author.id;
-    message.channel.awaitMessages(filter, {
-      max: 1,
-      time: 30000,
-    }).then((collected) => {
-      const title = collected.first().content;
-      collected.deleteAll(0);
-      creationMessage.edit('Wpisz pole embeda (masz na to 30 sekund!)');
-      message.channel.awaitMessages(filter, {
-        max: 1,
-        time: 30000,
-      }).then((collected) => {
-        const fieldText = collected.first().content;
-        collected.deleteAll(0);
-        creationMessage.edit('Wpisz kolor embeda (masz na to 30 sekund!)');
-        message.channel.awaitMessages(filter, {
-          max: 1,
-          time: 60000,
-        }).then((collected) => {
-          const color = collected.first().content;
-          collected.deleteAll(0);
-          const embed = new Discord.RichEmbed()
-              .setTitle(title)
-              .setDescription(fieldText)
-              .setColor(color);
-          creationMessage.edit(embed);
-        });
-      });
-    });
-  }
+exports.run = async (client, message, args) => {
+  // Check permissions
   const perms = message.member.permissions;
-  if (perms.has('ADMINISTRATOR')) {
-    createEmbed();
-  } else {
-    message.reply('Nie masz do tego uprawnień <:eee:589888887640555525>');
-  }
+  if (!perms.has('ADMINISTRATOR')) return message.reply('<:redCross:643513035402772520> Nie masz do tego uprawnień');
+
+  // Separates title, content and color
+  const separated = fullArgs.split('|');
+  const title = separated[0];
+  const content = separated[1];
+  let color = separated[2];
+
+  // Check whether at least 2 arguments have been passed
+  if (!title || !content) return message.reply('<:redCross:643513035402772520> Nie wpisałeś wymaganych argumentów. Poprawna składnia: `!embed <tytuł> | <zawartość> | [kolor]`');
+
+  // Fill color with default value if not present
+  if (!color) color = '#xxxxxx';
+
+  // Construct an embed
+  const embed = new Discord.RichEmbed()
+      .setTitle(title)
+      .setDescription(content)
+      .setColor(color);
+
+  message.channel.send(embed);
 };
