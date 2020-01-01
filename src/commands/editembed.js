@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 
+// TODO: Validate IDs
+
 exports.run = async (client, message, args) => {
   // Check permissions
   const perms = message.member.permissions;
@@ -22,11 +24,12 @@ exports.run = async (client, message, args) => {
   if (!textChannel) return message.reply('Nie oznaczyłeś kanału.' + errorMessage);
 
   // Validate embedID
-  if (typeof embedID != 'number') return message.reply('Wpisane przez ciebie ID nie jest liczbą.' + errorMessage);
+  console.log(typeof(embedID));
+  if (typeof(embedID) != 'number') return message.reply('Wpisane przez ciebie ID nie jest liczbą.' + errorMessage);
 
   // Get title, content and color
   const fullArgs = args.splice(3).join(' '); // Full arguments, without channel and ID, for example: | Title here | Content here | Color here
-  const separatedArgs = fullArgs.split('|');
+  const separatedArgs = fullArgs.split('|'); // Array: ['Title here', ' content here ', ' color here']
   const title = separatedArgs[0];
   const content = separatedArgs[1];
   let color = separatedArgs[2];
