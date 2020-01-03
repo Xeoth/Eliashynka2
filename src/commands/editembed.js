@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
   const embedID = args[1];
 
   // Check whether the channel was provided
-  if (!textChannel) return message.reply('Nie oznaczyłeś kanału.' + errorMessage)
+  if (!textChannel) return message.reply('Nie oznaczyłeś kanału.' + errorMessage);
 
   // Get the message
   const messageToEdit = await textChannel.fetchMessage(embedID)
