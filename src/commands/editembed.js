@@ -1,51 +1,54 @@
 const Discord = require('discord.js');
 
-/**
- *  Syntax: !editembed <textChannel:channelResolvable> <embedID:number>
-*/
-
-
 exports.run = async (client, message, args) => {
-  /** This changes the contents of an embed. */
-  async function editEmbed() {
-    const embedid = args[1];
-    const channelMention = message.mentions.channels.first();
-    if (!embedid) return message.reply('Nie wpisałeś ID embeda.');
-    if (!channelMention) return message.reply('Nie wpisałeś nazwy kanału <:facepalm:589888884800880756>');
-
-    const creationMessage = await message.channel.send('Wpisz tytuł embeda (masz na to 30 sekund!)');
-    channelMention.fetchMessage(embedid).then((messagea) => {
-      const filter = (m) => m.author.id === message.author.id;
-      message.channel.awaitMessages(filter,
-          {max: 1, time: 30000}).then((collected) => {
-        const title = collected.first().content;
-        collected.deleteAll(0);
-        creationMessage.edit('Wpisz pole embeda (masz na to 30 sekund!)');
-        message.channel.awaitMessages(filter,
-            {max: 1, time: 30000}).then((collected) => {
-          const fieldText = collected.first().content;
-          collected.deleteAll(0);
-          creationMessage.edit('Wpisz kolor embeda (masz na to 30 sekund!)');
-          message.channel.awaitMessages(filter,
-              {max: 1, time: 60000}).then((collected) => {
-            const color = collected.first().content;
-            collected.deleteAll(0);
-            const embed = new Discord.RichEmbed()
-                .setTitle(title)
-                .setDescription(fieldText)
-                .setColor(color);
-            messagea.edit(embed);
-            creationMessage.delete(0);
-            message.delete(0);
-          });
-        });
-      });
-    });
-  }
+  // Check permissions
   const perms = message.member.permissions;
-  if (perms.has('ADMINISTRATOR')) {
-    editEmbed();
-  } else {
-    message.reply('Nie masz do tego uprawnień <:eee:589888887640555525>');
+  if (!perms.has('ADMINISTRATOR')) return message.reply('<:redCross:643513035402772520> Nie masz do tego uprawnień');
+
+  // Check whether the prefix contains a space and set args accordingly
+  const hasSpace = client.config.prefix.includes(' ');
+  if (hasSpace) {
+    args.splice(0, 1); // Remove the command name if the prefix has a space
   }
+
+  // Generic error message reminding about the arguments
+  const errorMessage = '\n`<kanałTekstowy:channelResolvable> <IDembeda:numer> | <tytuł:tekst> | <zawartość:tekst> | [kolor:tekst-hex]`';
+
+  // Get the channel and ID of the embed
+  const textChannel = message.mentions.channels.first();
+  const embedID = args[1];
+
+  // Check whether the channel was provided
+  if (!textChannel) return message.reply('Nie oznaczyłeś kanału.' + errorMessage);
+
+  // Get the message
+  const messageToEdit = await textChannel.fetchMessage(embedID)
+      .catch(console.error); // If the message doesn't exist, return an error
+  if (!messageToEdit) return message.reply('Nie znaleziono wiadomości o ID: `' + embedID + '`'); // Notify the user about the error
+
+  // Get title, content and color
+  const fullArgs = args.splice(3).join(' '); // Full arguments, without channel and ID, for example: | Title here | Content here | Color here
+  const separatedArgs = fullArgs.split('|'); // Array: ['Title here', ' content here ', ' color here']
+  const title = separatedArgs[0];
+  const content = separatedArgs[1];
+  let color = separatedArgs[2];
+
+  // Check whether title and content were provided
+  if (!title || !content) return message.reply('Nie wpisałeś tytułu bądź zawartości.' + errorMessage);
+
+  // Check whether color was provided
+  if (!color) color = '#xxxxxx'; // Set to transparent if no color
+
+
+  // Construct the embed
+  const embed = new Discord.RichEmbed()
+      .setTitle(title)
+      .setDescription(content)
+      .setColor(color);
+
+  // Edit the message
+  messageToEdit.edit(embed);
+
+  // Confirm the edit
+  message.reply('Zaaktualizowano embed. Link:\n' + messageToEdit.url);
 };
