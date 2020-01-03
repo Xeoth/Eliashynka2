@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
 
-// TODO: Validate IDs
-
 exports.run = async (client, message, args) => {
   // Check permissions
   const perms = message.member.permissions;
@@ -23,9 +21,10 @@ exports.run = async (client, message, args) => {
   // Check whether the channel was provided
   if (!textChannel) return message.reply('Nie oznaczyłeś kanału.' + errorMessage);
 
-  // Validate embedID
-  console.log(typeof(embedID));
-  if (typeof(embedID) != 'number') return message.reply('Wpisane przez ciebie ID nie jest liczbą.' + errorMessage);
+  // Get the message
+  const messageToEdit = await textChannel.fetchMessage(embedID)
+      .catch(console.error); // If the message doesn't exist, return an error
+  if (!messageToEdit) return message.reply('Nie znaleziono wiadomości o ID: `' + embedID + '`'); // Notify the user about the error
 
   // Get title, content and color
   const fullArgs = args.splice(3).join(' '); // Full arguments, without channel and ID, for example: | Title here | Content here | Color here
@@ -40,8 +39,6 @@ exports.run = async (client, message, args) => {
   // Check whether color was provided
   if (!color) color = '#xxxxxx'; // Set to transparent if no color
 
-  // Get the message
-  const messageToEdit = await textChannel.fetchMessage(embedID);
 
   // Construct the embed
   const embed = new Discord.RichEmbed()
@@ -51,4 +48,7 @@ exports.run = async (client, message, args) => {
 
   // Edit the message
   messageToEdit.edit(embed);
+
+  // Confirm the edit
+  message.reply('Zaaktualizowano embed. Link:\n' + messageToEdit.url);
 };
