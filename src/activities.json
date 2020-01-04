@@ -1,0 +1,33 @@
+[
+  {
+    "game": {
+      "name": "zawodzenia furfagów w piecach",
+      "type": "LISTENING"
+    }
+  },
+  {
+    "game": {
+      "name": "skarg na administrację",
+      "type": "LISTENING"
+    }
+  },
+  {
+    "game": {
+      "name": "polskiego rapu. Nie no jk",
+      "type": "LISTENING"
+    }
+  },
+  {
+    "game": {
+      "name": "jak świat się rozpada",
+      "type": "WATCHING"
+    }
+  },
+  {
+    "game": {
+      "name": "rewolucję sztucznej inteligencji",
+      "type": "STREAMING",
+      "url": "https://www.twitch.tv/eliash2140"
+    }
+  }
+]
