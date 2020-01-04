@@ -5,12 +5,13 @@ module.exports = (client, message) => {
 
   // Set the status
   // See https://discord.js.org/#/docs/main/stable/typedef/PresenceData
-  const settings = {
-    game: {
-      name: 'zawodzenia furfagów w piecach',
-      type: 'LISTENING',
-    },
-  };
 
+  // Require file with activities
+  const names = require('../activities.json');
+
+  // Select a random activity
+  const settings = names[Math.floor(Math.random()*names.length)];
+
+  // Set the status
   client.user.setPresence(settings);
 };
