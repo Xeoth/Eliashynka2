@@ -1,5 +1,6 @@
 {
     "token": "",
     "prefix": "",
-    "logChannel": ""
+    "logChannel": "",
+    "ownerID": ""
 }
