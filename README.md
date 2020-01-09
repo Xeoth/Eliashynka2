@@ -4,7 +4,7 @@ Następnik dosyć słabej pierwszej wersji, [Eliashynki](https://github.com/Xeot
 
 W tej wersji planuję używać jej jako bota, który dodaje funkcje których nie ma w innych botach (bądź są trudne do znalezienia), zamiast bota "do wszystkiego", jak to było w poprzedniej wersji. 
 
-## Jak uruchomić bota
+### Jak uruchomić bota
 
 Najpierw, używając `git clone`, klonujemy bota:
 `git clone https://github.com/Xeoth/Eliashynka2.git`
@@ -22,7 +22,7 @@ The second version of my terrible first bot, [Eliashynka](https://github.com/Xeo
 
 This time, instead of making a general purpose bot (there are thousands of these already), I'm gonna focus on creating features that are either not available in other bots or hard to find.
 
-## How to run the bot
+### How to launch the bot
 
 Firstly, of course, clone the repo with `git clone https://github.com/Xeoth/Eliashynka2.git`
 
