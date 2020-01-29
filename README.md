@@ -1,4 +1,5 @@
 ![Eliashynka2](https://i.imgur.com/gfUjWXp.png)
+[![DeepScan grade](https://deepscan.io/api/teams/7182/projects/9317/branches/119421/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7182&pid=9317&bid=119421)
 
 Następnik dosyć słabej pierwszej wersji, [Eliashynki](https://github.com/Xeoth/Eliashynka).
 
