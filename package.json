@@ -1,11 +1,39 @@
 {
-    "dependencies": {
-        "discord.js": "^11.5.1",
-        "enmap": "^5.2.3",
-        "ms": "^2.1.2"
-    },
-    "devDependencies": {
-        "eslint": "^6.8.0",
-        "eslint-config-google": "^0.14.0"
-    }
+  "name": "eliashynka2",
+  "version": "2.0.0",
+  "description": "Second version of my Discord bot",
+  "main": "main.js",
+  "dependencies": {
+    "async-limiter": "^1.0.1",
+    "discord.js": "^11.5.1",
+    "enmap": "^5.2.3",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "lodash": "^4.17.15",
+    "long": "^4.0.0",
+    "ms": "^2.1.2",
+    "prism-media": "^0.0.3",
+    "snekfetch": "^3.6.4",
+    "tweetnacl": "^1.0.1",
+    "ws": "^6.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xeoth/Eliashynka2.git"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "discord.js"
+  ],
+  "author": "Xeoth <xeoth@xeoth.me> (https://xeoth.me/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xeoth/Eliashynka2/issues"
+  },
+  "homepage": "https://github.com/Xeoth/Eliashynka2#readme"
 }
