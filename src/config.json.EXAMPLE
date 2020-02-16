@@ -1,6 +1,8 @@
 {
-    "token": "",
-    "prefix": "",
-    "logChannel": "",
-    "ownerID": ""
+    "token": "NjIyNTI5MDcyNjY4MzQ0MzIx.XkmqKg.6BxLw3ty6BYtxyO5NQCUYJCMHTM",
+    "prefix": "!",
+    "logChannel": "569204015930408971",
+    "ownerID": "231027892392722432",
+    "supporterRoles": ["1", "2", "3"],
+    "supporterRolesPos": 10
 }
