@@ -14,7 +14,7 @@ Instalujemy moduły za pomocą `npm install`
 
 Następnie, kopiujemy plik config.json.EXAMPLE, zmieniamy nazwę na config.json i wypełniamy go [poprawnymi wartościami](https://github.com/Xeoth/Eliashynka2/blob/master/CONFIG.md).
 
-Na końcu, wpisujemy `npm start`.
+Na końcu, wpisujemy `npm start`. Jeżeli chcemy uruchomić bota za pomocą PM2, należy wpisać `pm2 start src/main.js --name Eliashynka2`.
 
 # 🇬🇧
 
@@ -30,4 +30,4 @@ Then, install the dependencies with `npm install`
 
 Then, copy config.json.EXAMPLE, rename it to config.json, and fill it with [appropriate values](https://github.com/Xeoth/Eliashynka2/blob/master/CONFIG.md).
 
-Finally, launch the bot with `npm start`.
+Finally, launch the bot with `npm start`. If you're using [PM2](https://pm2.io/), launch it with `pm2 start src/main.js --name Eliashynka2`
