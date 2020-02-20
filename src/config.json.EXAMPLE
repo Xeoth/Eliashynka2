@@ -4,5 +4,8 @@
     "logChannel": "569204015930408971",
     "ownerID": "231027892392722432",
     "supporterRoles": ["1", "2", "3"],
-    "supporterRolesPos": 10
+    "supporterRolesPos": 10,
+    "announcementsChannel": "1234541232131231",
+    "milestones": [1000, 2000, 10000],
+    "milestoneMessage": "$1 just reached $2 members!"
 }
