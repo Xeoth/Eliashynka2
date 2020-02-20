@@ -1,6 +1,6 @@
 module.exports = (client, member) => {
   if (!client.config.announcementsChannel) return;
-  
+
   const memberCount = member.guild.memberCount;
 
   if (!client.config.milestones.includes(memberCount)) return;
