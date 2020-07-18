@@ -9,7 +9,7 @@
     "enmap": "^5.2.3",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "long": "^4.0.0",
     "ms": "^2.1.2",
     "prism-media": "^0.0.3",
